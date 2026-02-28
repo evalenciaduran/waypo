@@ -8,9 +8,7 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/mobile-travel",
         "browser": "apps/mobile-travel/src/main.ts",
@@ -22,9 +20,8 @@
             "input": "apps/mobile-travel/public"
           }
         ],
-        "styles": [
-          "apps/mobile-travel/src/styles.scss"
-        ]
+        "styles": ["apps/mobile-travel/src/styles.scss"],
+        "polyfills": ["zone.js"]
       },
       "configurations": {
         "production": {

@@ -1,7 +1,7 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
-import { TourismMapPageContainer } from './app/features/tourism-map/containers/tourism-map-page.container';
+import { AppComponent } from './app/app.component';
 
-bootstrapApplication(TourismMapPageContainer, appConfig).catch((err) =>
+bootstrapApplication(AppComponent, appConfig).catch((err) =>
   console.error(err)
 );

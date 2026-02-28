@@ -30,7 +30,7 @@ export class TourismPoiMockAdapter implements TourismPoiRepo {
 
   list(filters: TourismPoiFilters): Observable<readonly TourismPoi[]> {
     const filtered = this.rows.filter((poi) => {
-      if (filters.city && poi.city.toLowerCase() !== filters.city.toLowerCase()) {
+      if (filters.city && filters.city.toLowerCase() !== 'spain' && poi.city.toLowerCase() !== filters.city.toLowerCase()) {
         return false;
       }
       if (filters.category && poi.category !== filters.category) {
