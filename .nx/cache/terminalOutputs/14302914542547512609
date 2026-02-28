@@ -1,0 +1,86 @@
+> nx run mobile-travel-e2e:e2e
+
+
+[7m[1m[36m NX [39m[22m[27m  Ensuring Playwright is installed.
+
+use --skipInstall to skip installation.
+
+[1G[0K[1G[0K⠙[1G[0K
+[2mRunning [22m3[2m tests using [22m3[2m workers[22m
+
+[1A[2K[1/3] [chromium] › apps/mobile-travel-e2e/src/example.spec.ts:3:5 › has map title
+[1A[2K[2/3] [firefox] › apps/mobile-travel-e2e/src/example.spec.ts:3:5 › has map title
+[1A[2K[3/3] [webkit] › apps/mobile-travel-e2e/src/example.spec.ts:3:5 › has map title
+[1A[2K[31m  1) [webkit] › apps/mobile-travel-e2e/src/example.spec.ts:3:5 › has map title [2m─────────────────────[22m[39m
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('ion-title')
+    Expected substring: [32m"Waypo"[39m
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('ion-title')[22m
+
+
+    [0m [90m  6 |[39m   [90m// Tourism Map Page Header[39m
+     [90m  7 |[39m   [36mconst[39m title [33m=[39m page[33m.[39mlocator([32m'ion-title'[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m  8 |[39m   [36mawait[39m expect(title)[33m.[39mtoContainText([32m'Waypo'[39m)[33m;[39m
+     [90m    |[39m                       [31m[1m^[22m[39m
+     [90m  9 |[39m })[33m;[39m
+     [90m 10 |[39m[0m
+    [2m    at /Users/eduardovalenciaduran/Documents/projects/waypo/apps/mobile-travel-e2e/src/example.spec.ts:8:23[22m
+
+
+[1A[2K[31m  2) [chromium] › apps/mobile-travel-e2e/src/example.spec.ts:3:5 › has map title [2m───────────────────[22m[39m
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('ion-title')
+    Expected substring: [32m"Waypo"[39m
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('ion-title')[22m
+
+
+    [0m [90m  6 |[39m   [90m// Tourism Map Page Header[39m
+     [90m  7 |[39m   [36mconst[39m title [33m=[39m page[33m.[39mlocator([32m'ion-title'[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m  8 |[39m   [36mawait[39m expect(title)[33m.[39mtoContainText([32m'Waypo'[39m)[33m;[39m
+     [90m    |[39m                       [31m[1m^[22m[39m
+     [90m  9 |[39m })[33m;[39m
+     [90m 10 |[39m[0m
+    [2m    at /Users/eduardovalenciaduran/Documents/projects/waypo/apps/mobile-travel-e2e/src/example.spec.ts:8:23[22m
+
+
+[1A[2K[31m  3) [firefox] › apps/mobile-travel-e2e/src/example.spec.ts:3:5 › has map title [2m────────────────────[22m[39m
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('ion-title')
+    Expected substring: [32m"Waypo"[39m
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('ion-title')[22m
+
+
+    [0m [90m  6 |[39m   [90m// Tourism Map Page Header[39m
+     [90m  7 |[39m   [36mconst[39m title [33m=[39m page[33m.[39mlocator([32m'ion-title'[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m  8 |[39m   [36mawait[39m expect(title)[33m.[39mtoContainText([32m'Waypo'[39m)[33m;[39m
+     [90m    |[39m                       [31m[1m^[22m[39m
+     [90m  9 |[39m })[33m;[39m
+     [90m 10 |[39m[0m
+    [2m    at /Users/eduardovalenciaduran/Documents/projects/waypo/apps/mobile-travel-e2e/src/example.spec.ts:8:23[22m
+
+
+[1A[2K[31m  3 failed[39m
+[31m    [chromium] › apps/mobile-travel-e2e/src/example.spec.ts:3:5 › has map title [2m────────────────────[22m[39m
+[31m    [firefox] › apps/mobile-travel-e2e/src/example.spec.ts:3:5 › has map title [2m─────────────────────[22m[39m
+[31m    [webkit] › apps/mobile-travel-e2e/src/example.spec.ts:3:5 › has map title [2m──────────────────────[22m[39m

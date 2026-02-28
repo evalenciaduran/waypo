@@ -1,0 +1,39 @@
+[33m❯[39m Building...
+[32m✔[39m Building...
+[37mApplication bundle generation failed. [1.348 seconds] - 2026-02-28T22:42:45.545Z
+[39m
+[1m[31m[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mCould not resolve "./app/app"[0m
+
+    apps/mobile-travel/src/main.ts:3:20:
+[37m      3 │ import { App } from [32m'./app/app'[37m;
+        ╵                     [32m~~~~~~~~~~~[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module './app/app' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    apps/mobile-travel/src/main.ts:3:20:
+[37m      3 │ import { App } from [32m'./app/app'[37m;
+        ╵                     [32m~~~~~~~~~~~[0m
+
+[39m[22m
+[37mWatch mode enabled. Watching for file changes...[39m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[37m[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mmain.js[37m            [2m | [22m[2mmain[22m         [2m | [22m [36m31.02 kB[37m[2m | [22m
+[32mstyles.css[37m         [2m | [22m[2mstyles[22m       [2m | [22m[36m115 bytes[37m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m [1m31.14 kB[22m
+
+Application bundle generation complete. [0.274 seconds] - 2026-02-28T22:43:07.173Z
+[39m
+[37mNOTE: Raw file sizes do not reflect development server per-request transformations.[39m
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4200[22m/[39m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[37m
+No output file changes.
+
+Application bundle generation complete. [0.017 seconds] - 2026-02-28T22:43:26.900Z
+[39m
+[37mPage reload sent to client(s).[39m

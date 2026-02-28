@@ -1,0 +1,21 @@
+{
+  "run": {
+    "command": "nx e2e mobile-travel-e2e",
+    "startTime": "2026-02-28T22:46:16.465Z",
+    "endTime": "2026-02-28T22:46:34.786Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "mobile-travel-e2e:e2e",
+      "target": "e2e",
+      "projectName": "mobile-travel-e2e",
+      "hash": "15799085304583817646",
+      "startTime": "2026-02-28T22:46:16.554Z",
+      "endTime": "2026-02-28T22:46:34.783Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 1
+    }
+  ]
+}

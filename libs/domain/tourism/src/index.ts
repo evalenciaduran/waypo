@@ -1,0 +1,1 @@
+export * from './lib/domain-tourism/domain-tourism';
