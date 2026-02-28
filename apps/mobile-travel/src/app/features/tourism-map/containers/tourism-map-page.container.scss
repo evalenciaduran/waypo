@@ -1,26 +1,175 @@
-.tourism-map-page {
-  --padding-start: 0;
-  --padding-end: 0;
+.tp-map-page {
+  --background: var(--ion-color-step-100, #f8fafc);
+  position: relative;
+
+  &__map {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  &__map-mock {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+
+  &__map-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.4) 0%,
+      transparent 15%,
+      transparent 60%,
+      rgba(255, 255, 255, 0.6) 100%
+    );
+    pointer-events: none;
+  }
+
+  &__controls {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 10;
+  }
+
+  &__fab-mini {
+    width: 40px;
+    height: 40px;
+    background: var(--ion-background-color, #ffffff);
+    border-radius: 9999px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ion-text-color, #334155);
+    border: none;
+    cursor: pointer;
+
+    &:active {
+      background: var(--ion-color-step-50, #f8fafc);
+    }
+  }
+
+  &__error {
+    position: absolute;
+    top: 10rem;
+    left: 1rem;
+    right: 1rem;
+    background: var(--ion-color-danger-tint, #ffcccc);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    z-index: 20;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  &__bottom-area {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    pointer-events: none; /* Let clicks pass through to map where transparent */
+  }
+
+  &__plan-route-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 1rem 1rem 1rem;
+    pointer-events: auto;
+  }
+
+  &__fab-main {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--ion-color-primary, #13a4ec);
+    color: var(--ion-color-primary-contrast, #ffffff);
+    padding: 0.75rem 1.25rem;
+    border-radius: 9999px;
+    box-shadow: 0 4px 14px rgba(19, 164, 236, 0.4);
+    font-weight: 700;
+    font-size: 0.875rem;
+    border: none;
+    cursor: pointer;
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  /* Offline States Handling */
+  &__offline-header {
+    position: relative;
+    z-index: 15;
+    background: var(--ion-background-color, #ffffff);
+  }
+
+  &__header-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    text-align: center;
+    padding: var(--ion-safe-area-top, 1rem) 1rem 1rem 1rem;
+    border-bottom: 1px solid var(--ion-color-step-100, #f1f5f9);
+  }
+
+  &__content-states {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--ion-background-color, #ffffff);
+    z-index: 11;
+    overflow-y: auto;
+    padding-top: calc(var(--ion-safe-area-top, 1rem) + 4rem);
+    padding-bottom: 6rem; /* Account for bottom nav */
+  }
+
+  /* Ensures child components in the area can be interacted with */
+  app-tourism-poi-list {
+    pointer-events: auto;
+    padding-bottom: 5rem; /* Account for bottom nav height */
+  }
 }
 
-.tourism-map-page__content {
-  display: grid;
-  gap: 12px;
-  padding: 12px;
-}
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  .tp-map-page {
+    &__map-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.6) 0%,
+        transparent 15%,
+        transparent 60%,
+        rgba(15, 23, 42, 0.8) 100%
+      );
+    }
 
-.tourism-map-page__map {
-  min-height: 280px;
-  border-radius: 12px;
-  border: 1px solid var(--ion-color-step-150);
-  display: grid;
-  place-items: center;
-}
+    &__fab-mini {
+      background: var(--ion-color-step-200, #1e293b);
+      color: #e2e8f0;
+    }
 
-.tourism-map-page__summary,
-.tourism-map-page__detail,
-.tourism-map-page__route {
-  border: 1px solid var(--ion-color-step-150);
-  border-radius: 12px;
-  padding: 12px;
+    &__offline-header,
+    &__content-states {
+      background: var(--ion-background-color, #0f172a);
+    }
+
+    &__header-title {
+      border-bottom-color: var(--ion-color-step-200, #1e293b);
+      color: #ffffff;
+    }
+  }
 }

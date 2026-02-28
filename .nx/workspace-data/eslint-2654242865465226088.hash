@@ -1,5 +1,5 @@
 {
-  "5283768035968000376": {
+  "3115476557014398457": {
     "apps/mobile-travel": {
       "targets": {
         "lint": {
@@ -41,7 +41,7 @@
       }
     }
   },
-  "15550957375128722266": {
+  "5783263314620491521": {
     "apps/mobile-travel-e2e": {
       "targets": {
         "lint": {
@@ -126,7 +126,6 @@
       }
     }
   },
-  "9777054682612428243": {},
   "7205423105472255930": {
     "libs/core/platform/geolocation": {
       "targets": {
@@ -209,6 +208,7 @@
       }
     }
   },
+  "1642163172870082374": {},
   "15222771611425054165": {
     "libs/core/platform/network": {
       "targets": {
@@ -250,50 +250,7 @@
       }
     }
   },
-  "6565999146032252759": {
-    "apps/mobile-travel-e2e": {
-      "targets": {
-        "lint": {
-          "command": "eslint .",
-          "cache": true,
-          "options": {
-            "cwd": "apps/mobile-travel-e2e"
-          },
-          "inputs": [
-            "default",
-            "^default",
-            "{workspaceRoot}/eslint.config.mjs",
-            "{workspaceRoot}/apps/mobile-travel-e2e/eslint.config.mjs",
-            "{workspaceRoot}/tools/eslint-rules/**/*",
-            {
-              "externalDependencies": [
-                "eslint"
-              ]
-            }
-          ],
-          "outputs": [
-            "{options.outputFile}"
-          ],
-          "metadata": {
-            "technologies": [
-              "eslint"
-            ],
-            "description": "Runs ESLint on project",
-            "help": {
-              "command": "npx eslint --help",
-              "example": {
-                "options": {
-                  "max-warnings": 0
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "12947111433142292042": {},
-  "16348969412791409253": {
+  "8729137078896930227": {
     "apps/mobile-travel": {
       "targets": {
         "lint": {
@@ -335,8 +292,8 @@
       }
     }
   },
-  "4712169637817744298": {},
-  "13310629039213772115": {
+  "2720372824490006583": {},
+  "9198703416674591352": {
     "apps/mobile-travel": {
       "targets": {
         "lint": {
@@ -378,180 +335,8 @@
       }
     }
   },
-  "7414044620761760790": {},
-  "9902797063248509470": {
-    "apps/mobile-travel-e2e": {
-      "targets": {
-        "lint": {
-          "command": "eslint .",
-          "cache": true,
-          "options": {
-            "cwd": "apps/mobile-travel-e2e"
-          },
-          "inputs": [
-            "default",
-            "^default",
-            "{workspaceRoot}/eslint.config.mjs",
-            "{workspaceRoot}/apps/mobile-travel-e2e/eslint.config.mjs",
-            "{workspaceRoot}/tools/eslint-rules/**/*",
-            {
-              "externalDependencies": [
-                "eslint"
-              ]
-            }
-          ],
-          "outputs": [
-            "{options.outputFile}"
-          ],
-          "metadata": {
-            "technologies": [
-              "eslint"
-            ],
-            "description": "Runs ESLint on project",
-            "help": {
-              "command": "npx eslint --help",
-              "example": {
-                "options": {
-                  "max-warnings": 0
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "3910185828635114744": {},
-  "2467347668192989841": {
-    "apps/mobile-travel-e2e": {
-      "targets": {
-        "lint": {
-          "command": "eslint .",
-          "cache": true,
-          "options": {
-            "cwd": "apps/mobile-travel-e2e"
-          },
-          "inputs": [
-            "default",
-            "^default",
-            "{workspaceRoot}/eslint.config.mjs",
-            "{workspaceRoot}/apps/mobile-travel-e2e/eslint.config.mjs",
-            "{workspaceRoot}/tools/eslint-rules/**/*",
-            {
-              "externalDependencies": [
-                "eslint"
-              ]
-            }
-          ],
-          "outputs": [
-            "{options.outputFile}"
-          ],
-          "metadata": {
-            "technologies": [
-              "eslint"
-            ],
-            "description": "Runs ESLint on project",
-            "help": {
-              "command": "npx eslint --help",
-              "example": {
-                "options": {
-                  "max-warnings": 0
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "18167185867215007103": {},
-  "11055102219479176945": {
-    "apps/mobile-travel-e2e": {
-      "targets": {
-        "lint": {
-          "command": "eslint .",
-          "cache": true,
-          "options": {
-            "cwd": "apps/mobile-travel-e2e"
-          },
-          "inputs": [
-            "default",
-            "^default",
-            "{workspaceRoot}/eslint.config.mjs",
-            "{workspaceRoot}/apps/mobile-travel-e2e/eslint.config.mjs",
-            "{workspaceRoot}/tools/eslint-rules/**/*",
-            {
-              "externalDependencies": [
-                "eslint"
-              ]
-            }
-          ],
-          "outputs": [
-            "{options.outputFile}"
-          ],
-          "metadata": {
-            "technologies": [
-              "eslint"
-            ],
-            "description": "Runs ESLint on project",
-            "help": {
-              "command": "npx eslint --help",
-              "example": {
-                "options": {
-                  "max-warnings": 0
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "5312220206594279605": {},
-  "4758241318248822449": {
-    "apps/mobile-travel-e2e": {
-      "targets": {
-        "lint": {
-          "command": "eslint .",
-          "cache": true,
-          "options": {
-            "cwd": "apps/mobile-travel-e2e"
-          },
-          "inputs": [
-            "default",
-            "^default",
-            "{workspaceRoot}/eslint.config.mjs",
-            "{workspaceRoot}/apps/mobile-travel-e2e/eslint.config.mjs",
-            "{workspaceRoot}/tools/eslint-rules/**/*",
-            {
-              "externalDependencies": [
-                "eslint"
-              ]
-            }
-          ],
-          "outputs": [
-            "{options.outputFile}"
-          ],
-          "metadata": {
-            "technologies": [
-              "eslint"
-            ],
-            "description": "Runs ESLint on project",
-            "help": {
-              "command": "npx eslint --help",
-              "example": {
-                "options": {
-                  "max-warnings": 0
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "16161246749731175164": {},
-  "17437304375789936098": {
+  "6744683369779969309": {},
+  "11522679426159767376": {
     "apps/mobile-travel": {
       "targets": {
         "lint": {
@@ -593,5 +378,91 @@
       }
     }
   },
-  "10734051882107592876": {}
+  "5644182324605162229": {},
+  "13353027091932480678": {
+    "apps/mobile-travel": {
+      "targets": {
+        "lint": {
+          "command": "eslint .",
+          "cache": true,
+          "options": {
+            "cwd": "apps/mobile-travel"
+          },
+          "inputs": [
+            "default",
+            "^default",
+            "{workspaceRoot}/eslint.config.mjs",
+            "{workspaceRoot}/apps/mobile-travel/eslint.config.mjs",
+            "{workspaceRoot}/tools/eslint-rules/**/*",
+            {
+              "externalDependencies": [
+                "eslint"
+              ]
+            }
+          ],
+          "outputs": [
+            "{options.outputFile}"
+          ],
+          "metadata": {
+            "technologies": [
+              "eslint"
+            ],
+            "description": "Runs ESLint on project",
+            "help": {
+              "command": "npx eslint --help",
+              "example": {
+                "options": {
+                  "max-warnings": 0
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "26224239033601939": {},
+  "11261215076922178424": {
+    "apps/mobile-travel-e2e": {
+      "targets": {
+        "lint": {
+          "command": "eslint .",
+          "cache": true,
+          "options": {
+            "cwd": "apps/mobile-travel-e2e"
+          },
+          "inputs": [
+            "default",
+            "^default",
+            "{workspaceRoot}/eslint.config.mjs",
+            "{workspaceRoot}/apps/mobile-travel-e2e/eslint.config.mjs",
+            "{workspaceRoot}/tools/eslint-rules/**/*",
+            {
+              "externalDependencies": [
+                "eslint"
+              ]
+            }
+          ],
+          "outputs": [
+            "{options.outputFile}"
+          ],
+          "metadata": {
+            "technologies": [
+              "eslint"
+            ],
+            "description": "Runs ESLint on project",
+            "help": {
+              "command": "npx eslint --help",
+              "example": {
+                "options": {
+                  "max-warnings": 0
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "7591905747536691991": {}
 }

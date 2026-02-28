@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>POI Detail View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+            extend: {
+                colors: {
+                "primary": "#13a4ec",
+                "background-light": "#f6f7f8",
+                "background-dark": "#101c22",
+                },
+                fontFamily: {
+                "display": ["Plus Jakarta Sans"]
+                },
+                borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+            },
+        }
+    </script>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-primary/30">
+<div class="relative flex flex-col w-full flex-1 overflow-x-hidden pb-20 max-w-md mx-auto bg-white dark:bg-slate-900 shadow-xl min-h-screen">
+<!-- Hero Section -->
+<div class="relative w-full h-80 shrink-0">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Majestic view of Sagrada Familia in Barcelona" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDn7Q8aMEdQ2utujDi63HCJntwIdT6cScvO817NufPSmzqhhRV0hl7fWFGx_bw8EXw3vcNIIb9XRX96_eeeam--RjoWoD62Jb8XIsQ5yKEv7SejpqJQ1eidwdP8vd-vY1rOUPaN5ZGXEgZ3T1qjOvBCl1bF4CKkgMKV9CzZZ6Cosvh3lPv3BConkrPQT33vRV5E9T-lXZMZvISMkobcYmNBJuLU60mtsvQ1r7Y8iiU34ACT5WPkDfdCRxxvYHRjq0-Z3OAJoDXqrGWJ");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+<!-- Top Navigation Overlay -->
+<div class="absolute top-0 left-0 w-full p-4 pt-12 flex justify-between items-center z-10 text-white">
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-black/20 backdrop-blur-md hover:bg-black/40 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<div class="flex gap-3">
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-black/20 backdrop-blur-md hover:bg-black/40 transition-colors text-white hover:text-red-500">
+<span class="material-symbols-outlined text-2xl">favorite</span>
+</button>
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-black/20 backdrop-blur-md hover:bg-black/40 transition-colors">
+<span class="material-symbols-outlined text-2xl">ios_share</span>
+</button>
+</div>
+</div>
+<!-- Hero Content -->
+<div class="absolute bottom-0 left-0 w-full p-6 text-white">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider text-white">Cathedral</span>
+<div class="flex items-center gap-1 text-xs font-medium text-slate-200">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span>Barcelona, Spain</span>
+</div>
+</div>
+<h1 class="text-3xl font-bold leading-tight mb-1">Sagrada Familia</h1>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-yellow-400 text-sm fill-current">star</span>
+<span class="material-symbols-outlined text-yellow-400 text-sm fill-current">star</span>
+<span class="material-symbols-outlined text-yellow-400 text-sm fill-current">star</span>
+<span class="material-symbols-outlined text-yellow-400 text-sm fill-current">star</span>
+<span class="material-symbols-outlined text-yellow-400/50 text-sm fill-current">star</span>
+<span class="text-sm ml-1 font-medium">4.8 (12k reviews)</span>
+</div>
+</div>
+</div>
+<!-- Quick Stats -->
+<div class="flex w-full divide-x divide-slate-100 dark:divide-slate-800 border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
+<div class="flex-1 py-4 flex flex-col items-center justify-center gap-1">
+<span class="material-symbols-outlined text-primary text-xl">schedule</span>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">Open</span>
+<span class="text-sm font-semibold">09:00 - 20:00</span>
+</div>
+<div class="flex-1 py-4 flex flex-col items-center justify-center gap-1">
+<span class="material-symbols-outlined text-primary text-xl">payments</span>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">Entry</span>
+<span class="text-sm font-semibold">€26 - €40</span>
+</div>
+<div class="flex-1 py-4 flex flex-col items-center justify-center gap-1">
+<span class="material-symbols-outlined text-primary text-xl">timer</span>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">Duration</span>
+<span class="text-sm font-semibold">~2 Hours</span>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-6">
+<!-- Action Buttons -->
+<div class="flex gap-3 w-full">
+<button class="flex-1 bg-primary hover:bg-primary/90 text-white h-12 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[20px]">directions</span>
+                    Get Directions
+                </button>
+<button class="w-12 h-12 shrink-0 border border-slate-200 dark:border-slate-700 rounded-lg flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">bookmark_border</span>
+</button>
+</div>
+<!-- Description -->
+<div class="flex flex-col gap-2">
+<h2 class="text-lg font-bold text-slate-900 dark:text-white">About</h2>
+<p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                    The Basílica i Temple Expiatori de la Sagrada Família is a church in the Eixample district of Barcelona, Catalonia, Spain, and is currently the largest unfinished Catholic church in the world. Designed by the Catalan architect Antoni Gaudí, his work on the building is part of a UNESCO World Heritage Site.
+                </p>
+<button class="text-primary font-semibold text-sm self-start mt-1">Read more</button>
+</div>
+<!-- Map Preview -->
+<div class="w-full h-32 rounded-xl overflow-hidden relative group cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Map view showing location in Barcelona streets" data-location="Barcelona" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB9WqMk25XJ1uU68KdGeW-8mxFlHJKTEfTqoTbQvQ2rZyDGh-ub-Fnsc8l4vL_F7Jy6DSz4-CyZ6NBwUnU9XRIuQJnwagkWHT1WmiL41yssAsqmjIBi0oKZpHahL-6TZ1QdypoYKHspJaiJNPMJBJzQqwxXAeA4R4HhoFYympaLT9ADn49s4_hmrRs7r06xWB92X8m9E2sKZcgYMFd0KIK0s5xO6jZVs9VdAorPi6VjSXhFobDAC5wtFEMkO4JJ3UJFmo3GUM1idqnF");'></div>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-white/90 dark:bg-slate-900/90 backdrop-blur px-4 py-2 rounded-full shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">map</span>
+<span class="text-sm font-semibold text-slate-900 dark:text-white">View on Map</span>
+</div>
+</div>
+</div>
+<!-- Nearby Places -->
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-end">
+<h2 class="text-lg font-bold text-slate-900 dark:text-white">Similar nearby</h2>
+<a class="text-primary text-sm font-medium" href="#">See all</a>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-4 hide-scrollbar -mx-6 px-6">
+<!-- Item 1 -->
+<div class="w-40 shrink-0 flex flex-col gap-2">
+<div class="w-full h-40 rounded-lg bg-slate-200 overflow-hidden relative">
+<img alt="Park Guell colorful mosaic bench" class="w-full h-full object-cover" data-alt="Park Guell colorful mosaic bench view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPUbIeOBDa5rfAfEw_b47LSe_D2hkcVVFp5xjT3kpy_g21Z5e0fezK2juDl1Cb4dsCL6KyqpGXMqQjQRnV_WHuBlXy8Z0z4Z5ew-g0e8zSRMI74DBl6Zvrs58lmKmJEfKro5vGTVITJRBCxDqBzZpsO-ziiIm0YHHsdQvy1plGhkrsX4gDLOxEQzjqee6zIHeOdwC4T42M9b7UgEds9SzLyOddgLidUsCEmbi34mZHalJ5a6ssQirc-4cFnvLwZdn42K_PjdFBfUdY"/>
+<div class="absolute top-2 right-2 bg-white/90 dark:bg-black/50 backdrop-blur rounded-md px-1.5 py-0.5 flex items-center gap-0.5">
+<span class="material-symbols-outlined text-yellow-500 text-[10px] fill-current">star</span>
+<span class="text-[10px] font-bold">4.7</span>
+</div>
+</div>
+<div>
+<h3 class="font-semibold text-sm truncate text-slate-900 dark:text-white">Park Güell</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Public Park • 2.1 km</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="w-40 shrink-0 flex flex-col gap-2">
+<div class="w-full h-40 rounded-lg bg-slate-200 overflow-hidden relative">
+<img alt="Casa Batllo facade details" class="w-full h-full object-cover" data-alt="Casa Batllo ornate facade architecture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9dap4vjFiFIb2VjwAwKuq_6mAocUwpxDfezhS388ziCmcCwtcK_mEz2V8QVMve1X_AsPmT2Nr23Pmalgtyt8G9ZcwVCJxy4kESAX5P9m8CoJpmxwIMlSdsT16fgYIp_1e2dk_jiTtg1xUCkwOLwp26FdyjYubVzP0udV46BI-TG7rNzGXG8CDH6eMmtcAX2dQKwO8ePkM9M_Pqi8F1PAdduWE2i-ZS9tYTxxcW4lC8--ndvmJ1P4RyDQJHI7vjK7ArsfTeY5ZA85F"/>
+<div class="absolute top-2 right-2 bg-white/90 dark:bg-black/50 backdrop-blur rounded-md px-1.5 py-0.5 flex items-center gap-0.5">
+<span class="material-symbols-outlined text-yellow-500 text-[10px] fill-current">star</span>
+<span class="text-[10px] font-bold">4.9</span>
+</div>
+</div>
+<div>
+<h3 class="font-semibold text-sm truncate text-slate-900 dark:text-white">Casa Batlló</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Museum • 1.4 km</p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="w-40 shrink-0 flex flex-col gap-2">
+<div class="w-full h-40 rounded-lg bg-slate-200 overflow-hidden relative">
+<img alt="La Pedrera rooftop chimneys" class="w-full h-full object-cover" data-alt="La Pedrera rooftop chimneys view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX-IjI00AKDFWEqGZm4yUIvk3Ni7MNgXv2OGvDkSNxjC0woKTuBXoMRywPS9UZiaQSzyaMK1Y_8V8d9l4PUNDQyCEI9C_OlqXZCIEDw5uzai4JBXihG4CAysQIPj44Q-w9PXuJ0uGpLzpEIojWgRv2Dk5ZFYRgAlFBqlO0ckS31UFXyNOvr4Msrj2xBMRH0v2xtwutrcywwlvZ_fFv_yIoWMbs6PwyEL5jVEbQB3IbFLqCkvrJR-HHrZfAQf7d17voj0zBx6ra9wcq"/>
+<div class="absolute top-2 right-2 bg-white/90 dark:bg-black/50 backdrop-blur rounded-md px-1.5 py-0.5 flex items-center gap-0.5">
+<span class="material-symbols-outlined text-yellow-500 text-[10px] fill-current">star</span>
+<span class="text-[10px] font-bold">4.6</span>
+</div>
+</div>
+<div>
+<h3 class="font-semibold text-sm truncate text-slate-900 dark:text-white">La Pedrera</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Historic Site • 1.6 km</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Bottom Nav -->
+<div class="fixed bottom-0 left-0 right-0 z-50 max-w-md mx-auto">
+<div class="flex gap-2 border-t border-slate-100 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg px-4 pb-6 pt-3">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 rounded-full text-primary" href="#">
+<span class="material-symbols-outlined text-[24px]">explore</span>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Explore</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">map</span>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Map</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">calendar_today</span>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Plan</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">person</span>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Profile</p>
+</a>
+</div>
+</div>
+</div>
+</body></html>

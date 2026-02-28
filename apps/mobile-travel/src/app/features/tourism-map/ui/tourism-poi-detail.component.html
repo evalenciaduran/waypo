@@ -1,0 +1,106 @@
+<div class="tp-poi-detail">
+    <!-- Hero Section -->
+    <div class="tp-poi-detail__hero">
+        <div class="tp-poi-detail__hero-bg"
+            [style.background-image]="'url(' + (poi.imageUrl || 'https://images.unsplash.com/photo-1539037116277-4db20d00508f?auto=format&fit=crop&q=80') + ')'">
+        </div>
+        <div class="tp-poi-detail__hero-gradient"></div>
+
+        <!-- Top Nav Overlay -->
+        <div class="tp-poi-detail__hero-nav">
+            <button class="tp-poi-detail__nav-btn" (click)="close.emit()">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </button>
+            <div class="tp-poi-detail__nav-actions">
+                <button class="tp-poi-detail__nav-btn">
+                    <span class="material-symbols-outlined">favorite</span>
+                </button>
+                <button class="tp-poi-detail__nav-btn">
+                    <span class="material-symbols-outlined">ios_share</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="tp-poi-detail__hero-content">
+            <div class="tp-poi-detail__pill-row">
+                <span class="tp-poi-detail__category-pill">{{ poi.category }}</span>
+                <div class="tp-poi-detail__location">
+                    <span class="material-symbols-outlined tp-poi-detail__loc-icon">location_on</span>
+                    <span>{{ poi.city }}, Spain</span>
+                </div>
+            </div>
+            <h1 class="tp-poi-detail__title">{{ poi.name }}</h1>
+            <div class="tp-poi-detail__rating-row">
+                <!-- 4 solid stars, 1 half -->
+                <span class="material-symbols-outlined tp-poi-detail__star"
+                    style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined tp-poi-detail__star"
+                    style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined tp-poi-detail__star"
+                    style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined tp-poi-detail__star"
+                    style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined tp-poi-detail__star tp-poi-detail__star--dim"
+                    style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="tp-poi-detail__reviews">{{ mockStats.rating }} ({{ mockStats.reviews }})</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="tp-poi-detail__stats-bar">
+        <div class="tp-poi-detail__stat-item">
+            <span class="material-symbols-outlined tp-poi-detail__stat-icon">schedule</span>
+            <span class="tp-poi-detail__stat-label">Open</span>
+            <span class="tp-poi-detail__stat-val">{{ mockStats.open }}</span>
+        </div>
+        <div class="tp-poi-detail__stat-item">
+            <span class="material-symbols-outlined tp-poi-detail__stat-icon">payments</span>
+            <span class="tp-poi-detail__stat-label">Entry</span>
+            <span class="tp-poi-detail__stat-val">{{ mockStats.entry }}</span>
+        </div>
+        <div class="tp-poi-detail__stat-item">
+            <span class="material-symbols-outlined tp-poi-detail__stat-icon">timer</span>
+            <span class="tp-poi-detail__stat-label">Duration</span>
+            <span class="tp-poi-detail__stat-val">{{ mockStats.duration }}</span>
+        </div>
+    </div>
+
+    <div class="tp-poi-detail__body">
+        <!-- Action Buttons -->
+        <div class="tp-poi-detail__actions">
+            <button class="tp-poi-detail__btn-primary" (click)="getDirections.emit()">
+                <span class="material-symbols-outlined">directions</span>
+                Get Directions
+            </button>
+            <button class="tp-poi-detail__btn-icon">
+                <span class="material-symbols-outlined">bookmark_border</span>
+            </button>
+        </div>
+
+        <!-- Description -->
+        <div class="tp-poi-detail__section">
+            <h2 class="tp-poi-detail__section-title">About</h2>
+            <p class="tp-poi-detail__desc">
+                {{ poi.shortDescription }}
+                <br /><br />
+                This point of interest is located in the region of {{ poi.city }} and offers visitors a chance to
+                explore local history and culture.
+            </p>
+            <button class="tp-poi-detail__read-more">Read more</button>
+        </div>
+
+        <!-- Map Preview -->
+        <div class="tp-poi-detail__map-preview">
+            <div class="tp-poi-detail__map-bg"
+                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB9WqMk25XJ1uU68KdGeW-8mxFlHJKTEfTqoTbQvQ2rZyDGh-ub-Fnsc8l4vL_F7Jy6DSz4-CyZ6NBwUnU9XRIuQJnwagkWHT1WmiL41yssAsqmjIBi0oKZpHahL-6TZ1QdypoYKHspJaiJNPMJBJzQqwxXAeA4R4HhoFYympaLT9ADn49s4_hmrRs7r06xWB92X8m9E2sKZcgYMFd0KIK0s5xO6jZVs9VdAorPi6VjSXhFobDAC5wtFEMkO4JJ3UJFmo3GUM1idqnF');">
+            </div>
+            <div class="tp-poi-detail__map-overlay"></div>
+            <div class="tp-poi-detail__map-btn">
+                <span class="material-symbols-outlined">map</span>
+                <span>View on Map</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,496 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--ion-background-color, #ffffff);
+}
+
+.tp-route-planner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--ion-safe-area-top, 1rem) 1rem 0.5rem 1rem;
+    background: var(--ion-background-color, #ffffff);
+    z-index: 10;
+    flex-shrink: 0;
+  }
+
+  &__icon-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: transparent;
+    border: none;
+    color: var(--ion-text-color, #0f172a);
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover,
+    &:active {
+      background: var(--ion-color-step-50, #f8fafc);
+    }
+  }
+
+  &__title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--ion-text-color, #0f172a);
+    margin: 0;
+  }
+
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem 1rem 1rem;
+    background: var(--ion-background-color, #ffffff);
+    z-index: 10;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  }
+
+  &__locations-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  &__loc-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 0;
+    align-self: stretch;
+  }
+
+  &__loc-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 9999px;
+    border: 2px solid var(--ion-color-primary, #13a4ec);
+    background: var(--ion-background-color, #ffffff);
+  }
+
+  &__loc-line {
+    width: 2px;
+    flex-grow: 1;
+    margin: 4px 0;
+    border-left: 1px dashed var(--ion-color-step-300, #cbd5e1);
+  }
+
+  &__loc-pin {
+    color: var(--ion-color-primary, #13a4ec);
+    font-size: 20px;
+  }
+
+  &__loc-fields {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.75rem;
+  }
+
+  &__input-box {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    background: var(--ion-color-step-50, #f8fafc);
+    border: 1px solid var(--ion-color-step-200, #e2e8f0);
+    border-radius: 0.75rem;
+    height: 48px;
+    padding: 0 0.75rem;
+    transition: all 0.2s;
+
+    &:focus-within {
+      border-color: var(--ion-color-primary, #13a4ec);
+      box-shadow: 0 0 0 2px rgba(19, 164, 236, 0.2);
+    }
+  }
+
+  &__input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--ion-text-color, #0f172a);
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-family: inherit;
+
+    &::placeholder {
+      color: var(--ion-color-medium, #94a3b8);
+    }
+  }
+
+  &__input-action {
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ion-color-medium, #94a3b8);
+    padding: 4px;
+    border-radius: 9999px;
+    cursor: pointer;
+
+    &--primary {
+      color: var(--ion-color-primary, #13a4ec);
+    }
+
+    &:active {
+      background: var(--ion-color-step-100, #f1f5f9);
+    }
+
+    .material-symbols-outlined {
+      font-size: 20px;
+    }
+  }
+
+  &__swap-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    background: var(--ion-color-step-50, #f8fafc);
+    border: 1px solid var(--ion-color-step-200, #e2e8f0);
+    color: var(--ion-color-medium, #64748b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover,
+    &:active {
+      color: var(--ion-color-primary, #13a4ec);
+    }
+
+    .material-symbols-outlined {
+      font-size: 20px;
+    }
+  }
+
+  &__modes {
+    margin-top: 0.5rem;
+  }
+
+  &__modes-container {
+    display: flex;
+    height: 40px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--ion-color-step-100, #f1f5f9);
+    border-radius: 0.5rem;
+    padding: 4px;
+  }
+
+  &__mode-label {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    border-radius: 0.375rem;
+    color: var(--ion-color-medium, #64748b);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &--active {
+      background: var(--ion-background-color, #ffffff);
+      color: var(--ion-color-primary, #13a4ec);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  &__mode-radio {
+    display: none;
+  }
+
+  &__mode-icon {
+    font-size: 18px;
+  }
+
+  &__offline-alert {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(var(--ion-color-warning-rgb, 255, 196, 9), 0.1);
+    color: var(--ion-color-warning-shade, #e0ac08);
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(var(--ion-color-warning-rgb, 255, 196, 9), 0.2);
+  }
+
+  &__offline-icon {
+    font-size: 16px;
+  }
+
+  &__map-area {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    background: var(--ion-color-step-100, #f1f5f9);
+    overflow: hidden;
+  }
+
+  &__map-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9;
+  }
+
+  &__map-fade-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4rem;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
+    pointer-events: none;
+  }
+
+  &__map-fade-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.1), transparent);
+    pointer-events: none;
+  }
+
+  &__map-controls {
+    position: absolute;
+    right: 1rem;
+    bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__fab-mini {
+    width: 40px;
+    height: 40px;
+    background: var(--ion-background-color, #ffffff);
+    border-radius: 9999px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ion-text-color, #334155);
+    border: none;
+    cursor: pointer;
+
+    &:active {
+      background: var(--ion-color-step-50, #f8fafc);
+    }
+  }
+
+  &__bottom-sheet {
+    background: var(--ion-background-color, #ffffff);
+    border-radius: 1rem 1rem 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    padding: 1.25rem;
+    z-index: 20;
+    flex-shrink: 0;
+    position: relative;
+    padding-bottom: calc(var(--ion-safe-area-bottom, 1rem) + 1.25rem);
+  }
+
+  &__pull-indicator {
+    position: absolute;
+    top: 0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3rem;
+    height: 4px;
+    background: var(--ion-color-step-200, #e2e8f0);
+    border-radius: 9999px;
+  }
+
+  &__route-summary {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  &__route-title {
+    color: var(--ion-color-primary, #13a4ec);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.25rem 0;
+  }
+
+  &__route-stats {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  &__eta {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--ion-text-color, #0f172a);
+  }
+
+  &__eta-unit {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--ion-color-medium, #64748b);
+    margin-left: 0.25rem;
+  }
+
+  &__dist {
+    color: var(--ion-color-medium, #64748b);
+    font-weight: 500;
+  }
+
+  &__route-desc {
+    font-size: 0.875rem;
+    color: var(--ion-color-medium, #64748b);
+    margin: 0.25rem 0 0 0;
+  }
+
+  &__mode-badge {
+    background: rgba(19, 164, 236, 0.1);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__mode-badge-icon {
+    color: var(--ion-color-primary, #13a4ec);
+    font-size: 24px;
+  }
+
+  &__actions {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  &__btn-start {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 48px;
+    background: var(--ion-color-primary, #13a4ec);
+    color: var(--ion-color-primary-contrast, #ffffff);
+    border-radius: 0.75rem;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    box-shadow: 0 4px 14px rgba(19, 164, 236, 0.3);
+    cursor: pointer;
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  &__btn-share {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ion-color-step-100, #f1f5f9);
+    color: var(--ion-text-color, #334155);
+    border-radius: 0.75rem;
+    border: none;
+    cursor: pointer;
+
+    &:active {
+      background: var(--ion-color-step-200, #e2e8f0);
+    }
+  }
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  :host {
+    background: var(--ion-color-step-100, #0f172a);
+  }
+
+  .tp-route-planner {
+    &__header,
+    &__inputs {
+      background: var(--ion-color-step-100, #0f172a);
+    }
+
+    &__icon-btn,
+    &__title,
+    &__input,
+    &__eta {
+      color: #ffffff;
+    }
+
+    &__loc-line {
+      border-color: var(--ion-color-step-300, #475569);
+    }
+
+    &__input-box {
+      background: var(--ion-color-step-200, #1e293b);
+      border-color: var(--ion-color-step-300, #334155);
+    }
+
+    &__swap-btn {
+      background: var(--ion-color-step-200, #1e293b);
+      border-color: var(--ion-color-step-300, #334155);
+    }
+
+    &__modes-container {
+      background: var(--ion-color-step-200, #1e293b);
+    }
+
+    &__mode-label--active {
+      background: var(--ion-color-step-300, #334155);
+    }
+
+    &__map-bg {
+      opacity: 0.6;
+    }
+
+    &__fab-mini {
+      background: var(--ion-color-step-200, #1e293b);
+      color: #e2e8f0;
+    }
+
+    &__bottom-sheet {
+      background: var(--ion-color-step-100, #0f172a);
+    }
+
+    &__pull-indicator {
+      background: var(--ion-color-step-300, #334155);
+    }
+
+    &__btn-share {
+      background: var(--ion-color-step-200, #1e293b);
+      color: #e2e8f0;
+    }
+  }
+}

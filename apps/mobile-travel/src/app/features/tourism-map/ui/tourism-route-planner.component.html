@@ -1,0 +1,150 @@
+<div class="tp-route-planner">
+    <!-- Header -->
+    <div class="tp-route-planner__header">
+        <button class="tp-route-planner__icon-btn" (click)="close.emit()">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <h2 class="tp-route-planner__title">Plan Route</h2>
+        <button class="tp-route-planner__icon-btn">
+            <span class="material-symbols-outlined">more_vert</span>
+        </button>
+    </div>
+
+    <!-- Input Section -->
+    <div class="tp-route-planner__inputs">
+        <div class="tp-route-planner__locations-row">
+            <!-- Location Icons column -->
+            <div class="tp-route-planner__loc-icons">
+                <div class="tp-route-planner__loc-dot"></div>
+                <div class="tp-route-planner__loc-line"></div>
+                <span class="material-symbols-outlined tp-route-planner__loc-pin">location_on</span>
+            </div>
+
+            <!-- Inputs column -->
+            <div class="tp-route-planner__loc-fields">
+                <!-- Origin -->
+                <div class="tp-route-planner__input-box">
+                    <input class="tp-route-planner__input" [(ngModel)]="origin" (change)="requestRoute()"
+                        placeholder="Origin" />
+                    <button class="tp-route-planner__input-action tp-route-planner__input-action--primary">
+                        <span class="material-symbols-outlined">my_location</span>
+                    </button>
+                </div>
+
+                <!-- Destination -->
+                <div class="tp-route-planner__input-box">
+                    <input class="tp-route-planner__input" [(ngModel)]="destination" (change)="requestRoute()"
+                        placeholder="Where to?" />
+                    <button class="tp-route-planner__input-action" (click)="clearDestination()" *ngIf="destination">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Swap Button -->
+            <button class="tp-route-planner__swap-btn" (click)="onSwapLocations()">
+                <span class="material-symbols-outlined">swap_vert</span>
+            </button>
+        </div>
+
+        <!-- Travel Mode Toggle -->
+        <div class="tp-route-planner__modes">
+            <div class="tp-route-planner__modes-container">
+                <!-- Driving -->
+                <label class="tp-route-planner__mode-label"
+                    [class.tp-route-planner__mode-label--active]="selectedMode === 'driving'">
+                    <span class="material-symbols-outlined tp-route-planner__mode-icon">directions_car</span>
+                    <span class="tp-route-planner__mode-text">Car</span>
+                    <input type="radio" name="travel-mode" value="driving" [checked]="selectedMode === 'driving'"
+                        (change)="onModeChange('driving')" class="tp-route-planner__mode-radio" />
+                </label>
+
+                <!-- Walking -->
+                <label class="tp-route-planner__mode-label"
+                    [class.tp-route-planner__mode-label--active]="selectedMode === 'walking'">
+                    <span class="material-symbols-outlined tp-route-planner__mode-icon">directions_walk</span>
+                    <span class="tp-route-planner__mode-text">Walk</span>
+                    <input type="radio" name="travel-mode" value="walking" [checked]="selectedMode === 'walking'"
+                        (change)="onModeChange('walking')" class="tp-route-planner__mode-radio" />
+                </label>
+
+                <!-- Transit -->
+                <label class="tp-route-planner__mode-label"
+                    [class.tp-route-planner__mode-label--active]="selectedMode === 'transit'">
+                    <span class="material-symbols-outlined tp-route-planner__mode-icon">directions_bus</span>
+                    <span class="tp-route-planner__mode-text">Transit</span>
+                    <input type="radio" name="travel-mode" value="transit" [checked]="selectedMode === 'transit'"
+                        (change)="onModeChange('transit')" class="tp-route-planner__mode-radio" />
+                </label>
+
+                <!-- Bicycling -->
+                <label class="tp-route-planner__mode-label"
+                    [class.tp-route-planner__mode-label--active]="selectedMode === 'bicycling'">
+                    <span class="material-symbols-outlined tp-route-planner__mode-icon">pedal_bike</span>
+                    <span class="tp-route-planner__mode-text">Bike</span>
+                    <input type="radio" name="travel-mode" value="bicycling" [checked]="selectedMode === 'bicycling'"
+                        (change)="onModeChange('bicycling')" class="tp-route-planner__mode-radio" />
+                </label>
+            </div>
+        </div>
+
+        <!-- Offline Alert -->
+        <div class="tp-route-planner__offline-alert" *ngIf="isOffline">
+            <span class="material-symbols-outlined tp-route-planner__offline-icon">wifi_off</span>
+            <span>You are exploring offline. Some data might be limited.</span>
+        </div>
+    </div>
+
+    <!-- Map Area (Mock for now until real map integration) -->
+    <div class="tp-route-planner__map-area">
+        <div class="tp-route-planner__map-bg"
+            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB9WqMk25XJ1uU68KdGeW-8mxFlHJKTEfTqoTbQvQ2rZyDGh-ub-Fnsc8l4vL_F7Jy6DSz4-CyZ6NBwUnU9XRIuQJnwagkWHT1WmiL41yssAsqmjIBi0oKZpHahL-6TZ1QdypoYKHspJaiJNPMJBJzQqwxXAeA4R4HhoFYympaLT9ADn49s4_hmrRs7r06xWB92X8m9E2sKZcgYMFd0KIK0s5xO6jZVs9VdAorPi6VjSXhFobDAC5wtFEMkO4JJ3UJFmo3GUM1idqnF');">
+        </div>
+        <div class="tp-route-planner__map-fade-top"></div>
+        <div class="tp-route-planner__map-fade-bottom"></div>
+
+        <!-- Floating Map Controls -->
+        <div class="tp-route-planner__map-controls">
+            <button class="tp-route-planner__fab-mini">
+                <span class="material-symbols-outlined">layers</span>
+            </button>
+            <button class="tp-route-planner__fab-mini">
+                <span class="material-symbols-outlined">near_me</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Bottom Sheet / Route Info -->
+    <div class="tp-route-planner__bottom-sheet" *ngIf="route">
+        <div class="tp-route-planner__pull-indicator"></div>
+
+        <div class="tp-route-planner__route-summary">
+            <div>
+                <h3 class="tp-route-planner__route-title">Best Route</h3>
+                <div class="tp-route-planner__route-stats">
+                    <span class="tp-route-planner__eta">{{ (route.durationSeconds / 60) | number:'1.0-0' }}<span
+                            class="tp-route-planner__eta-unit">min</span></span>
+                    <span class="tp-route-planner__dist">• {{ (route.distanceMeters / 1000) | number:'1.1-1' }}
+                        km</span>
+                </div>
+                <p class="tp-route-planner__route-desc">Via main roads • Light traffic</p>
+            </div>
+            <div class="tp-route-planner__mode-badge">
+                <span class="material-symbols-outlined tp-route-planner__mode-badge-icon">
+                    {{ selectedMode === 'driving' ? 'directions_car' : selectedMode === 'walking' ? 'directions_walk' :
+                    selectedMode === 'transit' ? 'directions_bus' : 'pedal_bike' }}
+                </span>
+            </div>
+        </div>
+
+        <div class="tp-route-planner__actions">
+            <button class="tp-route-planner__btn-start" (click)="startNavigation.emit()">
+                <span class="material-symbols-outlined">navigation</span>
+                Start Navigation
+            </button>
+            <button class="tp-route-planner__btn-share">
+                <span class="material-symbols-outlined">share</span>
+            </button>
+        </div>
+    </div>
+</div>

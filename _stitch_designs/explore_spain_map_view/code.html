@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Explore Spain Map View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13a4ec",
+                        "secondary": "#0e7490", 
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101c22",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2c35",
+                        "text-main": "#0f172a",
+                        "text-sub": "#64748b",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'float': '0 8px 30px -4px rgba(0, 0, 0, 0.1)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-main dark:text-white h-screen overflow-hidden flex flex-col relative">
+<!-- Map Background Area -->
+<div class="absolute inset-0 z-0 bg-cover bg-center" data-alt="Stylized map of Spain with location markers" data-location="Spain" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB91Ai78eP-Ps1EmfLalvoBzbITCO3c7mmutx9fxE3XCY128r-pyTi7MBbgVX87gzIeaZxusv1245WcxVTYWddkgZ3qkLJPeRkf2zsyTY0AcYPBlL34wZAFXwWMYqxJk914wK-57r_IzkmhJqH4mbMR7vvG3Hip9-AeX-L0CdPIIOAhxTuKgoYujWM2VO_kmAxQ1ZrQ4VbawNj8WfUibSeENFybqsAhMhg_Mqvt56hrcfuNm7lY0Udbal-SltmYy5SrG-81zexubRJ9');">
+<div class="absolute inset-0 bg-gradient-to-b from-black/10 to-transparent pointer-events-none"></div>
+</div>
+<!-- Top Area: Search & Filters -->
+<div class="absolute top-0 left-0 right-0 z-20 pt-12 pb-4 px-4 bg-gradient-to-b from-white/90 via-white/50 to-transparent dark:from-background-dark/90 dark:via-background-dark/50 pointer-events-none">
+<div class="pointer-events-auto flex flex-col gap-4">
+<!-- Search Bar -->
+<div class="flex items-center gap-3">
+<div class="flex-1 h-12 bg-white dark:bg-surface-dark rounded-xl shadow-soft flex items-center px-4 transition-transform active:scale-[0.99]">
+<span class="material-symbols-outlined text-text-sub dark:text-gray-400">search</span>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-text-main dark:text-white placeholder-text-sub dark:placeholder-gray-500 text-base ml-2" placeholder="City/POI" type="text"/>
+</div>
+<button class="h-12 w-12 bg-white dark:bg-surface-dark rounded-xl shadow-soft flex items-center justify-center text-primary active:bg-gray-50 dark:active:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined">tune</span>
+</button>
+</div>
+<!-- Category Chips -->
+<div class="flex gap-3 overflow-x-auto scrollbar-hide pb-2 -mx-4 px-4">
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-full shadow-md whitespace-nowrap text-sm font-medium">
+<span class="material-symbols-outlined text-[18px]">museum</span>
+                    Museums
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-surface-dark text-text-main dark:text-gray-200 rounded-full shadow-sm whitespace-nowrap text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-[18px] text-text-sub dark:text-gray-400">fort</span>
+                    Monuments
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-surface-dark text-text-main dark:text-gray-200 rounded-full shadow-sm whitespace-nowrap text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-[18px] text-text-sub dark:text-gray-400">landscape</span>
+                    Nature
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-surface-dark text-text-main dark:text-gray-200 rounded-full shadow-sm whitespace-nowrap text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-[18px] text-text-sub dark:text-gray-400">restaurant</span>
+                    Gastronomy
+                </button>
+</div>
+</div>
+</div>
+<!-- Right Side Map Controls -->
+<div class="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-10">
+<button class="h-10 w-10 bg-white dark:bg-surface-dark rounded-full shadow-float flex items-center justify-center text-text-main dark:text-white active:bg-gray-50 dark:active:bg-gray-700">
+<span class="material-symbols-outlined text-[20px]">my_location</span>
+</button>
+<button class="h-10 w-10 bg-white dark:bg-surface-dark rounded-full shadow-float flex items-center justify-center text-text-main dark:text-white active:bg-gray-50 dark:active:bg-gray-700">
+<span class="material-symbols-outlined text-[20px]">layers</span>
+</button>
+</div>
+<!-- POI Marker Examples (Simulated on Map) -->
+<div class="absolute top-[40%] left-[30%] z-0 transform -translate-x-1/2 -translate-y-1/2">
+<div class="relative group cursor-pointer">
+<div class="h-10 w-10 bg-primary rounded-full border-4 border-white dark:border-surface-dark shadow-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+</div>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-white dark:bg-surface-dark px-3 py-1.5 rounded-lg shadow-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+<p class="text-xs font-bold text-text-main dark:text-white">Toledo Cathedral</p>
+</div>
+</div>
+</div>
+<div class="absolute top-[35%] right-[25%] z-0 transform -translate-x-1/2 -translate-y-1/2">
+<div class="h-8 w-8 bg-secondary rounded-full border-2 border-white dark:border-surface-dark shadow-lg flex items-center justify-center text-white cursor-pointer">
+<span class="text-xs font-bold">4</span>
+</div>
+</div>
+<!-- Bottom Sheet / Carousel Area -->
+<div class="absolute bottom-[72px] left-0 right-0 z-20 flex flex-col justify-end pointer-events-none">
+<!-- FAB: Plan Route -->
+<div class="flex justify-end px-5 mb-4 pointer-events-auto">
+<button class="flex items-center justify-center h-14 bg-primary hover:bg-sky-500 text-white rounded-2xl shadow-float px-6 gap-3 transition-all transform active:scale-95">
+<span class="material-symbols-outlined">alt_route</span>
+<span class="font-bold text-base tracking-wide">Plan Route</span>
+</button>
+</div>
+<!-- Featured POIs Carousel -->
+<div class="pl-4 pb-4 overflow-x-auto scrollbar-hide pointer-events-auto">
+<div class="flex gap-4 pr-4">
+<!-- Card 1 -->
+<div class="min-w-[280px] bg-white dark:bg-surface-dark rounded-2xl p-3 shadow-float flex flex-col gap-3">
+<div class="relative h-32 rounded-xl overflow-hidden bg-gray-200">
+<img alt="Alhambra palace in Granada during sunset" class="w-full h-full object-cover" data-alt="Alhambra palace in Granada" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4UmW3bLPK2GgF8m3EslUIQdi4_GKGcazY7n1VEtIdkblV2EGAqtNAVLte4BzzAzjNWV6vWYhMSwa9jW1adpgKeBEBmcA2yyXYAWK_Hir1dUKAalRngDzzJcTwdl3kx5OPZWVu56bGkTfnjvEuFLZBk7i_1xVBoh-ujhlKfvGC82qC4-bkTWdgk8aE9lRF1Rbjaaf-8P2ajBUtNayeE5wQPdsknWhiZLUdUI35e2YOHapsQdgOXp60Azv6q1ILUi4_gYhF4xUGNlPW"/>
+<div class="absolute top-2 right-2 bg-black/40 backdrop-blur-sm rounded-full p-1.5">
+<span class="material-symbols-outlined text-white text-[16px]">favorite</span>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-text-main dark:text-white text-base">The Alhambra</h3>
+<span class="flex items-center gap-1 text-xs font-medium bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-1.5 py-0.5 rounded">
+                                4.9 <span class="material-symbols-outlined text-[10px] fill-current">star</span>
+</span>
+</div>
+<div class="flex items-center gap-1 text-text-sub dark:text-gray-400 text-xs mb-2">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                            Granada, Spain
+                        </div>
+<div class="flex gap-2">
+<span class="text-[10px] bg-gray-100 dark:bg-gray-700 text-text-sub dark:text-gray-300 px-2 py-1 rounded-md">Historical</span>
+<span class="text-[10px] bg-gray-100 dark:bg-gray-700 text-text-sub dark:text-gray-300 px-2 py-1 rounded-md">Palace</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="min-w-[280px] bg-white dark:bg-surface-dark rounded-2xl p-3 shadow-float flex flex-col gap-3">
+<div class="relative h-32 rounded-xl overflow-hidden bg-gray-200">
+<img alt="Sagrada Familia architecture detail" class="w-full h-full object-cover" data-alt="Sagrada Familia architecture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPS0dlgqdlL9BLhCHZXahM9M5s5odeI9JGARG6wBGkdPP-fPbx3RV40w9kAZwd3_i4mmKSnRWR7RB3gew3OUeh7qVelou_rxrz_9qh3wa2ybhBvluEKJUdVouJtoADyhv3E8JIo8aREc3-L8qtRP6x5LlODU6e3o3XrPnXijx4sdEyci1WmV3pzbB0ziQBVfyWEjM2VpSX1vMWFcneMm__RDN4O7RGgH64jdEjHJOYB3ARIpCK2lW9uwEXM8T7FFWlZBYoolItuPP1"/>
+<div class="absolute top-2 right-2 bg-black/40 backdrop-blur-sm rounded-full p-1.5">
+<span class="material-symbols-outlined text-white text-[16px]">favorite</span>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-text-main dark:text-white text-base">Sagrada Familia</h3>
+<span class="flex items-center gap-1 text-xs font-medium bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-1.5 py-0.5 rounded">
+                                4.8 <span class="material-symbols-outlined text-[10px] fill-current">star</span>
+</span>
+</div>
+<div class="flex items-center gap-1 text-text-sub dark:text-gray-400 text-xs mb-2">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                            Barcelona, Spain
+                        </div>
+<div class="flex gap-2">
+<span class="text-[10px] bg-gray-100 dark:bg-gray-700 text-text-sub dark:text-gray-300 px-2 py-1 rounded-md">Basilica</span>
+<span class="text-[10px] bg-gray-100 dark:bg-gray-700 text-text-sub dark:text-gray-300 px-2 py-1 rounded-md">Gaudi</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="z-50 border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-surface-dark px-4 pb-6 pt-2 w-full">
+<div class="flex justify-between items-center">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 rounded-full text-primary" href="#">
+<div class="flex h-7 items-center justify-center">
+<span class="material-symbols-outlined text-[24px] font-variation-settings-'FILL'1">explore</span>
+</div>
+<p class="text-xs font-semibold leading-normal tracking-[0.015em]">Explore</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-text-sub dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors" href="#">
+<div class="flex h-7 items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">map</span>
+</div>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Trips</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-text-sub dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors" href="#">
+<div class="flex h-7 items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">favorite</span>
+</div>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Saved</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-text-sub dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors" href="#">
+<div class="flex h-7 items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">person</span>
+</div>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Profile</p>
+</a>
+</div>
+</div>
+</body></html>

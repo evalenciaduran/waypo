@@ -1,48 +1,71 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Mapa turístico de España</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content class="tourism-map-page" fullscreen>
-  <div class="tourism-map-page__content">
-    <app-tourism-map-toolbar
-      [loading]="vm().loading"
-      (reload)="onReload()"
-      (requestRoute)="onRequestRoute($event)"
-    />
-
-    <div class="tourism-map-page__map" data-testid="google-map-canvas">
-      <p>Google Map host placeholder</p>
+<ion-content class="tp-map-page" fullscreen scroll-y="false">
+  <!-- Full screen map container -->
+  <div class="tp-map-page__map" data-testid="google-map-canvas">
+    <div class="tp-map-page__map-mock"
+      style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB91Ai78eP-Ps1EmfLalvoBzbITCO3c7mmutx9fxE3XCY128r-pyTi7MBbgVX87gzIeaZxusv1245WcxVTYWddkgZ3qkLJPeRkf2zsyTY0AcYPBlL34wZAFXwWMYqxJk914wK-57r_IzkmhJqH4mbMR7vvG3Hip9-AeX-L0CdPIIOAhxTuKgoYujWM2VO_kmAxQ1ZrQ4VbawNj8WfUibSeENFybqsAhMhg_Mqvt56hrcfuNm7lY0Udbal-SltmYy5SrG-81zexubRJ9');">
     </div>
-
-    <div *ngIf="vm().error" class="tourism-map-page__error" data-testid="poi-error-state">
-      <ion-text color="danger">{{ vm().error }}</ion-text>
-    </div>
-
-    <div class="tourism-map-page__summary">
-      <h2>Resumen de puntos de interés</h2>
-      <app-tourism-poi-list
-        [pois]="vm().pois"
-        [selectedPoiId]="vm().selectedPoi?.id ?? null"
-        (selectPoi)="onSelectPoi($event)"
-      />
-    </div>
-
-    <article
-      *ngIf="vm().selectedPoi as poi"
-      class="tourism-map-page__detail"
-      data-testid="poi-detail-panel"
-    >
-      <h3>{{ poi.name }}</h3>
-      <p>{{ poi.shortDescription }}</p>
-      <p>{{ poi.city }} · {{ poi.category }}</p>
-    </article>
-
-    <section *ngIf="vm().route as route" class="tourism-map-page__route" data-testid="route-summary-panel">
-      <h3>Ruta estimada</h3>
-      <p>Distancia: {{ route.distanceMeters / 1000 | number: '1.1-1' }} km</p>
-      <p>Duración: {{ route.durationSeconds / 60 | number: '1.0-0' }} min</p>
-    </section>
+    <div class="tp-map-page__map-overlay"></div>
   </div>
+
+  <!-- Top Toolbar Overlay -->
+  <app-tourism-map-toolbar *ngIf="!isOffline && !vm().error" [loading]="vm().loading"
+    [selectedCategory]="selectedCategory" (search)="onSearch($event)" (categorySelect)="onCategorySelect($event)" />
+
+  <!-- Offline / Error Banners -->
+  <div class="tp-map-page__offline-header" *ngIf="isOffline || vm().error">
+    <div class="tp-map-page__header-title">Explorar</div>
+    <app-tourism-offline-banner *ngIf="isOffline" />
+  </div>
+
+  <div class="tp-map-page__content-states" *ngIf="isOffline || vm().error || vm().loading">
+    <app-tourism-empty-state *ngIf="vm().error && !isOffline" (retry)="store.loadPois({ limit: 100, city: 'Spain' })" />
+
+    <app-tourism-saved-list *ngIf="isOffline" [savedPois]="vm().pois" />
+
+    <app-tourism-skeleton-loader *ngIf="vm().loading" />
+  </div>
+
+  <!-- Right Map Controls Overlay -->
+  <div class="tp-map-page__controls" *ngIf="!isOffline && !vm().error">
+    <button class="tp-map-page__fab-mini">
+      <span class="material-symbols-outlined">my_location</span>
+    </button>
+    <button class="tp-map-page__fab-mini">
+      <span class="material-symbols-outlined">layers</span>
+    </button>
+  </div>
+
+  <!-- Bottom Interactive Area -->
+  <div class="tp-map-page__bottom-area">
+    <div class="tp-map-page__plan-route-wrapper">
+      <button class="tp-map-page__fab-main" (click)="onOpenRoutePlanner()">
+        <span class="material-symbols-outlined">alt_route</span>
+        <span class="tp-map-page__fab-main-text">Plan Route</span>
+      </button>
+    </div>
+
+    <!-- POI Carousel -->
+    <app-tourism-poi-list [pois]="vm().pois" [selectedPoiId]="vm().selectedPoi?.id ?? null"
+      (selectPoi)="onSelectPoi($event)" />
+  </div>
+
+  <!-- Main Bottom Nav Overlay -->
+  <app-tourism-bottom-nav *ngIf="!isRoutingMode" />
+
+  <!-- POI Detail Modal (Drawer) -->
+  <ion-modal [isOpen]="!!vm().selectedPoi" [initialBreakpoint]="1" [breakpoints]="[0, 1]" style="--height: 90vh;"
+    (didDismiss)="onClosePoiDetail()">
+    <ng-template>
+      <app-tourism-poi-detail *ngIf="vm().selectedPoi as poi" [poi]="poi" (close)="onClosePoiDetail()"
+        (getDirections)="onGetDirections(poi)" />
+    </ng-template>
+  </ion-modal>
+
+  <!-- Route Planner Modal (Fullscreen Screen) -->
+  <ion-modal [isOpen]="isRoutingMode" (didDismiss)="onCloseRoutePlanner()">
+    <ng-template>
+      <app-tourism-route-planner [route]="vm().route" (close)="onCloseRoutePlanner()"
+        (calculateRoute)="onCalculateRoute($event)" />
+    </ng-template>
+  </ion-modal>
 </ion-content>

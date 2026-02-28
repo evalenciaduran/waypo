@@ -1,18 +1,37 @@
-<ul class="poi-list" data-testid="poi-summary-list">
-  <li
-    *ngFor="let poi of pois; trackBy: trackByPoiId"
-    class="poi-list__item"
-    [class.poi-list__item--selected]="poi.id === selectedPoiId"
-  >
-    <button
-      type="button"
-      class="poi-list__button"
-      [attr.data-testid]="'poi-item-' + poi.id"
-      (click)="selectPoi.emit(poi.id)"
-    >
-      <strong>{{ poi.name }}</strong>
-      <span>{{ poi.city }} · {{ poi.category }}</span>
-      <small>{{ poi.shortDescription }}</small>
+<div class="tp-poi-carousel">
+  <div class="tp-poi-carousel__track" data-testid="poi-summary-list">
+    @for (poi of pois; track poi.id) {
+    <button type="button" class="tp-poi-card" [class.tp-poi-card--selected]="poi.id === selectedPoiId"
+      (click)="selectPoi.emit(poi.id)" [attr.data-testid]="'poi-card-' + poi.id">
+      <div class="tp-poi-card__image-wrapper">
+        <img
+          [src]="poi.imageUrl || 'https://images.unsplash.com/photo-1539037116277-4db20d00508f?auto=format&fit=crop&q=80&w=400&h=300'"
+          [alt]="poi.name" class="tp-poi-card__img"
+          (error)="$event.target.src = 'https://images.unsplash.com/photo-1539037116277-4db20d00508f?auto=format&fit=crop&q=80&w=400&h=300'" />
+        <div class="tp-poi-card__fav">
+          <span class="material-symbols-outlined tp-poi-card__fav-icon">favorite</span>
+        </div>
+      </div>
+
+      <div class="tp-poi-card__content">
+        <div class="tp-poi-card__header">
+          <h3 class="tp-poi-card__title">{{ poi.name }}</h3>
+          <span class="tp-poi-card__rating">
+            4.8 <span class="material-symbols-outlined tp-poi-card__star-icon"
+              style="font-variation-settings: 'FILL' 1;">star</span>
+          </span>
+        </div>
+
+        <div class="tp-poi-card__location">
+          <span class="material-symbols-outlined tp-poi-card__loc-icon">location_on</span>
+          {{ poi.city }}, Spain
+        </div>
+
+        <div class="tp-poi-card__tags">
+          <span class="tp-poi-card__tag">{{ poi.category }}</span>
+        </div>
+      </div>
     </button>
-  </li>
-</ul>
+    }
+  </div>
+</div>

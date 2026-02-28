@@ -1,52 +1,24 @@
-<div class="toolbar">
-  <ion-item>
-    <ion-input
-      [(ngModel)]="origin"
-      data-testid="route-origin-input"
-      label="Origen"
-      labelPlacement="stacked"
-      placeholder="lat,lng"
-    />
-  </ion-item>
+<div class="tp-toolbar">
+  <!-- Search Bar -->
+  <div class="tp-toolbar__search-bar">
+    <div class="tp-toolbar__search-box">
+      <span class="material-symbols-outlined tp-toolbar__search-icon">search</span>
+      <input type="text" class="tp-toolbar__search-input" placeholder="City/POI" [(ngModel)]="searchQuery"
+        (keyup.enter)="onSearchSubmit($event)" [disabled]="loading" />
+    </div>
+    <button class="tp-toolbar__filter-btn">
+      <span class="material-symbols-outlined">tune</span>
+    </button>
+  </div>
 
-  <ion-item>
-    <ion-input
-      [(ngModel)]="destination"
-      data-testid="route-destination-input"
-      label="Destino"
-      labelPlacement="stacked"
-      placeholder="lat,lng"
-    />
-  </ion-item>
-
-  <ion-item>
-    <ion-select
-      [(ngModel)]="mode"
-      data-testid="route-mode-select"
-      label="Modo"
-      labelPlacement="stacked"
-    >
-      <ion-select-option value="driving">Coche</ion-select-option>
-      <ion-select-option value="walking">A pie</ion-select-option>
-      <ion-select-option value="transit">Transporte</ion-select-option>
-    </ion-select>
-  </ion-item>
-
-  <div class="toolbar__actions">
-    <ion-button
-      (click)="reload.emit()"
-      data-testid="poi-refresh-button"
-      fill="outline"
-      [disabled]="loading"
-    >
-      Recargar
-    </ion-button>
-    <ion-button
-      (click)="onRouteSubmit()"
-      data-testid="route-submit-button"
-      [disabled]="loading || !origin || !destination"
-    >
-      Calcular ruta
-    </ion-button>
+  <!-- Category Chips -->
+  <div class="tp-toolbar__chips-scroll">
+    @for (cat of categories; track cat.id) {
+    <button class="tp-toolbar__chip" [class.tp-toolbar__chip--active]="selectedCategory === cat.id"
+      (click)="onCategoryClick(cat.id)">
+      <span class="material-symbols-outlined tp-toolbar__chip-icon">{{ cat.icon }}</span>
+      {{ cat.label }}
+    </button>
+    }
   </div>
 </div>

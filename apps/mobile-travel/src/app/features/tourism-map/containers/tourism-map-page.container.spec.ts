@@ -1,25 +1,28 @@
 import { TestBed } from '@angular/core/testing';
+import { signal } from '@angular/core';
+import { vi } from 'vitest';
 import { TourismMapPageContainer } from './tourism-map-page.container';
 import { TourismMapStore } from '../state/tourism-map.store';
+import { IonicModule } from '@ionic/angular';
 
 describe('TourismMapPageContainer', () => {
   it('creates component and requests initial POI load', () => {
-    const storeMock: Partial<TourismMapStore> = {
-      vm: () => ({
+    const storeMock = {
+      vm: signal({
         loading: false,
         pois: [],
         selectedPoi: null,
         route: null,
         error: null,
       }),
-      loadPois: jasmine.createSpy('loadPois'),
-      selectPoi: jasmine.createSpy('selectPoi'),
-      calculateRoute: jasmine.createSpy('calculateRoute'),
-      clearError: jasmine.createSpy('clearError'),
-    };
+      loadPois: vi.fn(),
+      selectPoi: vi.fn(),
+      calculateRoute: vi.fn(),
+      clearError: vi.fn(),
+    } as unknown as TourismMapStore;
 
     TestBed.configureTestingModule({
-      imports: [TourismMapPageContainer],
+      imports: [IonicModule.forRoot(), TourismMapPageContainer],
       providers: [{ provide: TourismMapStore, useValue: storeMock }],
     });
 

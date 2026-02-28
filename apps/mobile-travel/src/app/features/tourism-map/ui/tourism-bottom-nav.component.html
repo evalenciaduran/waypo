@@ -1,0 +1,14 @@
+<nav class="tp-bottom-nav">
+    <div class="tp-bottom-nav__container">
+        @for (item of navItems; track item.id) {
+        <a href="#" class="tp-bottom-nav__item" [class.tp-bottom-nav__item--active]="item.active"
+            (click)="$event.preventDefault()">
+            <div class="tp-bottom-nav__icon-wrapper">
+                <span class="material-symbols-outlined tp-bottom-nav__icon"
+                    [style.font-variation-settings]="item.active ? '\'FILL\' 1' : '\'FILL\' 0'">{{ item.icon }}</span>
+            </div>
+            <span class="tp-bottom-nav__label">{{ item.label }}</span>
+        </a>
+        }
+    </div>
+</nav>
