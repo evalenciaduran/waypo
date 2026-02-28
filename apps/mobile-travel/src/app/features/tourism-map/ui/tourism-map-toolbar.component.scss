@@ -1,0 +1,10 @@
+.toolbar {
+  display: grid;
+  gap: 8px;
+}
+
+.toolbar__actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}

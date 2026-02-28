@@ -1,0 +1,18 @@
+<ul class="poi-list" data-testid="poi-summary-list">
+  <li
+    *ngFor="let poi of pois; trackBy: trackByPoiId"
+    class="poi-list__item"
+    [class.poi-list__item--selected]="poi.id === selectedPoiId"
+  >
+    <button
+      type="button"
+      class="poi-list__button"
+      [attr.data-testid]="'poi-item-' + poi.id"
+      (click)="selectPoi.emit(poi.id)"
+    >
+      <strong>{{ poi.name }}</strong>
+      <span>{{ poi.city }} · {{ poi.category }}</span>
+      <small>{{ poi.shortDescription }}</small>
+    </button>
+  </li>
+</ul>

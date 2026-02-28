@@ -1,0 +1,17 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@tourism/domain": ["libs/domain/tourism/src/lib/tourism.models"],
+      "@core/platform/network": ["libs/core/platform/network/src/lib/network-status.port"],
+      "@core/platform/geolocation": ["libs/core/platform/geolocation/src/lib/geolocation.port"],
+      "@core/platform/google-maps": ["libs/core/platform/google-maps/src/lib/google-maps.port"]
+    }
+  }
+}

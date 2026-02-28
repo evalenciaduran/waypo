@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mapa turístico de España</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="tourism-map-page" fullscreen>
+  <div class="tourism-map-page__content">
+    <app-tourism-map-toolbar
+      [loading]="vm().loading"
+      (reload)="onReload()"
+      (requestRoute)="onRequestRoute($event)"
+    />
+
+    <div class="tourism-map-page__map" data-testid="google-map-canvas">
+      <p>Google Map host placeholder</p>
+    </div>
+
+    <div *ngIf="vm().error" class="tourism-map-page__error" data-testid="poi-error-state">
+      <ion-text color="danger">{{ vm().error }}</ion-text>
+    </div>
+
+    <div class="tourism-map-page__summary">
+      <h2>Resumen de puntos de interés</h2>
+      <app-tourism-poi-list
+        [pois]="vm().pois"
+        [selectedPoiId]="vm().selectedPoi?.id ?? null"
+        (selectPoi)="onSelectPoi($event)"
+      />
+    </div>
+
+    <article
+      *ngIf="vm().selectedPoi as poi"
+      class="tourism-map-page__detail"
+      data-testid="poi-detail-panel"
+    >
+      <h3>{{ poi.name }}</h3>
+      <p>{{ poi.shortDescription }}</p>
+      <p>{{ poi.city }} · {{ poi.category }}</p>
+    </article>
+
+    <section *ngIf="vm().route as route" class="tourism-map-page__route" data-testid="route-summary-panel">
+      <h3>Ruta estimada</h3>
+      <p>Distancia: {{ route.distanceMeters / 1000 | number: '1.1-1' }} km</p>
+      <p>Duración: {{ route.durationSeconds / 60 | number: '1.0-0' }} min</p>
+    </section>
+  </div>
+</ion-content>

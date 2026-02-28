@@ -1,0 +1,26 @@
+.tourism-map-page {
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+.tourism-map-page__content {
+  display: grid;
+  gap: 12px;
+  padding: 12px;
+}
+
+.tourism-map-page__map {
+  min-height: 280px;
+  border-radius: 12px;
+  border: 1px solid var(--ion-color-step-150);
+  display: grid;
+  place-items: center;
+}
+
+.tourism-map-page__summary,
+.tourism-map-page__detail,
+.tourism-map-page__route {
+  border: 1px solid var(--ion-color-step-150);
+  border-radius: 12px;
+  padding: 12px;
+}
