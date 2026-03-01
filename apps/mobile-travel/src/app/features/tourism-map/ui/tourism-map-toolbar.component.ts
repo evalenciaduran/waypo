@@ -23,7 +23,6 @@ export class TourismMapToolbarComponent {
     { id: 'museum', label: 'Museums', icon: 'museum' },
     { id: 'monument', label: 'Monuments', icon: 'fort' },
     { id: 'nature', label: 'Nature', icon: 'landscape' },
-    { id: 'gastronomy', label: 'Gastronomy', icon: 'restaurant' },
   ];
 
   onSearchSubmit(event: Event): void {
