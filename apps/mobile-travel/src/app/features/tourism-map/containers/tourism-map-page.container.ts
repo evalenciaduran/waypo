@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonContent, IonModal } from '@ionic/angular/standalone';
 import { TourismMapStore } from '../state/tourism-map.store';
@@ -36,18 +36,13 @@ import { TourismPoi } from '@tourism/domain';
   styleUrl: './tourism-map-page.container.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TourismMapPageContainer implements OnInit {
+export class TourismMapPageContainer {
   readonly store = inject(TourismMapStore);
 
   readonly vm = this.store.vm;
   selectedCategory: string | null = null;
   isRoutingMode = false;
-
-  ngOnInit(): void {
-    // In a real app we'd inject Network status here
-    // For MVP phase mock it based on no network data
-    this.store.loadPois({ limit: 100, city: 'Spain' });
-  }
+  private boundsTimer: ReturnType<typeof setTimeout> | null = null;
 
   get isOffline(): boolean {
     return this.vm().error === 'Failed to load POIs'; // basic mock for now
@@ -83,13 +78,16 @@ export class TourismMapPageContainer implements OnInit {
   }
 
   onBoundsChange(bounds: MapBoundsEvent): void {
-    this.store.loadPois({
-      limit: 100,
-      bounds: {
-        northEast: { lat: bounds.neLat, lng: bounds.neLng },
-        southWest: { lat: bounds.swLat, lng: bounds.swLng },
-      },
-    });
+    if (this.boundsTimer) clearTimeout(this.boundsTimer);
+    this.boundsTimer = setTimeout(() => {
+      this.store.loadPois({
+        limit: 100,
+        bounds: {
+          northEast: { lat: bounds.neLat, lng: bounds.neLng },
+          southWest: { lat: bounds.swLat, lng: bounds.swLng },
+        },
+      });
+    }, 1500);
   }
 
   onCalculateRoute(event: { origin: string; destination: string; mode: TravelMode }): void {

@@ -15,12 +15,10 @@
     <app-tourism-offline-banner *ngIf="isOffline" />
   </div>
 
-  <div class="tp-map-page__content-states" *ngIf="isOffline || vm().error || vm().loading">
+  <div class="tp-map-page__content-states" *ngIf="isOffline || vm().error">
     <app-tourism-empty-state *ngIf="vm().error && !isOffline" (retry)="store.loadPois({ limit: 100, city: 'Spain' })" />
 
     <app-tourism-saved-list *ngIf="isOffline" [savedPois]="vm().pois" />
-
-    <app-tourism-skeleton-loader *ngIf="vm().loading" />
   </div>
 
   <!-- Right Map Controls Overlay -->

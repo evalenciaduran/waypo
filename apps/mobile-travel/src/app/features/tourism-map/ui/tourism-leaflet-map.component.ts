@@ -134,8 +134,8 @@ export class TourismLeafletMapComponent implements OnInit, AfterViewInit, OnChan
 
     private initMap(): void {
         this.map = L.map(this.mapContainer.nativeElement, {
-            center: [40.0, -3.7],
-            zoom: 6,
+            center: [40.4168, -3.7038],
+            zoom: 13,
             zoomControl: false,
             attributionControl: true,
         });
