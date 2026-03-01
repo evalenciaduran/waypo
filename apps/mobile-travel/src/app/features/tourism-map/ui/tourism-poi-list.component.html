@@ -4,10 +4,8 @@
     <button type="button" class="tp-poi-card" [class.tp-poi-card--selected]="poi.id === selectedPoiId"
       (click)="selectPoi.emit(poi.id)" [attr.data-testid]="'poi-card-' + poi.id">
       <div class="tp-poi-card__image-wrapper">
-        <img
-          [src]="poi.imageUrl || 'https://images.unsplash.com/photo-1539037116277-4db20d00508f?auto=format&fit=crop&q=80&w=400&h=300'"
-          [alt]="poi.name" class="tp-poi-card__img"
-          (error)="$event.target.src = 'https://images.unsplash.com/photo-1539037116277-4db20d00508f?auto=format&fit=crop&q=80&w=400&h=300'" />
+        <img [src]="poi.imageUrl || 'poi-placeholder.png'" [alt]="poi.name" class="tp-poi-card__img" loading="lazy"
+          (error)="$event.target.onerror = null; $event.target.src = 'poi-placeholder.png'" />
         <div class="tp-poi-card__fav">
           <span class="material-symbols-outlined tp-poi-card__fav-icon">favorite</span>
         </div>

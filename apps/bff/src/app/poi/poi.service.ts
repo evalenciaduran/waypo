@@ -192,7 +192,88 @@ export class PoiService {
         }
 
         this.logger.debug(`Enriched ${enrichedCount} POIs with Wikidata images`);
+
+        // Second pass: Wikipedia thumbnails for POIs that still have no image
+        const stillMissing = pois.filter((p) => !p.imageUrl);
+        if (stillMissing.length > 0) {
+            const wikiCount = await this.enrichWithWikipedia(stillMissing, elements);
+            this.logger.debug(`Enriched ${wikiCount} more POIs with Wikipedia thumbnails`);
+        }
+
         return pois;
+    }
+
+    /**
+     * Second-pass enrichment: fetch thumbnails from Wikipedia REST API.
+     * Uses the `wikipedia` tag from OSM elements (e.g. "es:Museo del Prado").
+     */
+    private async enrichWithWikipedia(
+        pois: PoiResponseDto[],
+        elements: OverpassElement[],
+    ): Promise<number> {
+        // Build map of POI id → wikipedia tag
+        const wikiMap = new Map<string, string>();
+        for (const el of elements) {
+            const wiki = el.tags?.['wikipedia'];
+            if (wiki) {
+                wikiMap.set(String(el.id), wiki);
+            }
+        }
+
+        if (wikiMap.size === 0) return 0;
+
+        let count = 0;
+        // Fetch thumbnails in parallel (max 5 concurrent)
+        const batch: Promise<void>[] = [];
+        for (const poi of pois) {
+            if (poi.imageUrl) continue;
+            const wiki = wikiMap.get(poi.id);
+            if (!wiki) continue;
+
+            batch.push(
+                this.fetchWikipediaThumbnail(wiki).then((url) => {
+                    if (url) {
+                        poi.imageUrl = url;
+                        count++;
+                    }
+                }),
+            );
+
+            // Process in batches of 5
+            if (batch.length >= 5) {
+                await Promise.allSettled(batch.splice(0));
+            }
+        }
+        if (batch.length > 0) {
+            await Promise.allSettled(batch);
+        }
+
+        return count;
+    }
+
+    /**
+     * Fetch a thumbnail URL from the Wikipedia REST API.
+     * Input: "es:Museo del Prado" → GET https://es.wikipedia.org/api/rest_v1/page/summary/Museo_del_Prado
+     * Returns the thumbnail.source URL or null.
+     */
+    private async fetchWikipediaThumbnail(wikiTag: string): Promise<string | null> {
+        try {
+            const [lang, ...titleParts] = wikiTag.split(':');
+            const title = titleParts.join(':');
+            if (!lang || !title) return null;
+
+            const url = `https://${lang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
+            const res = await fetch(url, {
+                headers: { 'User-Agent': 'WaypoTravelApp/1.0' },
+            });
+
+            if (!res.ok) return null;
+
+            const data = await res.json() as { thumbnail?: { source?: string } };
+            return data.thumbnail?.source ?? null;
+        } catch {
+            return null;
+        }
     }
 
     /** Map an Overpass element to our normalized DTO */
