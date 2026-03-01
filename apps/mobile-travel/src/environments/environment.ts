@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  useMocks: true,
-  apiBaseUrl: 'https://api.example.com',
+  useMocks: false,
+  apiBaseUrl: 'http://localhost:3000',
   googleMapsApiKey: 'REPLACE_ME',
 };
