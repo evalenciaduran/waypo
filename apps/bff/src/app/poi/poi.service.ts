@@ -101,7 +101,7 @@ export class PoiService {
             lat,
             lng,
             shortDescription: this.buildDescription(tags),
-            imageUrl: tags['image'] || tags['wikimedia_commons'] || null,
+            imageUrl: this.resolveImageUrl(tags),
             source: 'osm',
             updatedAt: new Date().toISOString(),
         };
@@ -138,6 +138,38 @@ export class PoiService {
         if (tags['wikipedia']) parts.push(`Wikipedia: ${tags['wikipedia']}`);
 
         return parts.length > 0 ? parts.join(' · ') : null;
+    }
+
+    /**
+     * Resolve an actual image URL from OSM tags.
+     *
+     * OSM 'image' tag: usually a direct URL → use as-is
+     * OSM 'wikimedia_commons' tag: can be:
+     *   - "File:Example.jpg" → convert to Wikimedia thumbnail URL
+     *   - "Category:Something" → not a direct image, skip
+     *   - A direct URL → use as-is
+     */
+    private resolveImageUrl(tags: Record<string, string>): string | null {
+        // 1. Direct URL in 'image' tag
+        const imageTag = tags['image'];
+        if (imageTag && imageTag.startsWith('http')) {
+            return imageTag;
+        }
+
+        // 2. Wikimedia Commons tag
+        const wmc = tags['wikimedia_commons'];
+        if (wmc) {
+            if (wmc.startsWith('http')) return wmc;
+
+            // "File:Something.jpg" → Wikimedia thumbnail URL
+            if (wmc.startsWith('File:')) {
+                const filename = wmc.slice(5);
+                return `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(filename)}?width=400`;
+            }
+            // "Category:..." → skip, not a direct image
+        }
+
+        return null;
     }
 
     private capitalize(s: string): string {

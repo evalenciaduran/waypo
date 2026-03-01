@@ -42,11 +42,10 @@ export class OverpassClient {
         const query = `
 [out:json][timeout:25];
 (
-  node["tourism"](${bboxStr});
-  way["tourism"](${bboxStr});
+  node["tourism"~"museum|attraction|viewpoint|artwork|gallery"](${bboxStr});
+  way["tourism"~"museum|attraction|viewpoint|artwork|gallery"](${bboxStr});
   node["historic"](${bboxStr});
   way["historic"](${bboxStr});
-  node["amenity"~"restaurant|cafe|bar|pub"](${bboxStr});
 );
 out body center ${limit};
 `;
