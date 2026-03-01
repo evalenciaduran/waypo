@@ -1,10 +1,8 @@
 <ion-content class="tp-map-page" fullscreen scroll-y="false">
-  <!-- Full screen map container -->
-  <div class="tp-map-page__map" data-testid="google-map-canvas">
-    <div class="tp-map-page__map-mock"
-      style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB91Ai78eP-Ps1EmfLalvoBzbITCO3c7mmutx9fxE3XCY128r-pyTi7MBbgVX87gzIeaZxusv1245WcxVTYWddkgZ3qkLJPeRkf2zsyTY0AcYPBlL34wZAFXwWMYqxJk914wK-57r_IzkmhJqH4mbMR7vvG3Hip9-AeX-L0CdPIIOAhxTuKgoYujWM2VO_kmAxQ1ZrQ4VbawNj8WfUibSeENFybqsAhMhg_Mqvt56hrcfuNm7lY0Udbal-SltmYy5SrG-81zexubRJ9');">
-    </div>
-    <div class="tp-map-page__map-overlay"></div>
+  <!-- Full screen interactive map -->
+  <div class="tp-map-page__map" data-testid="leaflet-map-canvas">
+    <app-tourism-leaflet-map [pois]="vm().pois" [selectedPoiId]="vm().selectedPoi?.id ?? null"
+      (poiSelect)="onSelectPoi($event)" (boundsChange)="onBoundsChange($event)" />
   </div>
 
   <!-- Top Toolbar Overlay -->

@@ -11,6 +11,7 @@ import { TourismOfflineBannerComponent } from '../ui/tourism-offline-banner.comp
 import { TourismEmptyStateComponent } from '../ui/tourism-empty-state.component';
 import { TourismSkeletonLoaderComponent } from '../ui/tourism-skeleton-loader.component';
 import { TourismSavedListComponent } from '../ui/tourism-saved-list.component';
+import { TourismLeafletMapComponent, MapBoundsEvent } from '../ui/tourism-leaflet-map.component';
 import { TourismPoi } from '@tourism/domain';
 
 @Component({
@@ -29,6 +30,7 @@ import { TourismPoi } from '@tourism/domain';
     TourismEmptyStateComponent,
     TourismSkeletonLoaderComponent,
     TourismSavedListComponent,
+    TourismLeafletMapComponent,
   ],
   templateUrl: './tourism-map-page.container.html',
   styleUrl: './tourism-map-page.container.scss',
@@ -78,6 +80,16 @@ export class TourismMapPageContainer implements OnInit {
 
   onCloseRoutePlanner(): void {
     this.isRoutingMode = false;
+  }
+
+  onBoundsChange(bounds: MapBoundsEvent): void {
+    this.store.loadPois({
+      limit: 100,
+      bounds: {
+        northEast: { lat: bounds.neLat, lng: bounds.neLng },
+        southWest: { lat: bounds.swLat, lng: bounds.swLng },
+      },
+    });
   }
 
   onCalculateRoute(event: { origin: string; destination: string; mode: TravelMode }): void {
